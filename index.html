@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      let body = document.querySelector('body');
+      body.addEventListener('click', (event) => {
+        let paw = document.createElement('img');
+        paw.src = '../dist/paw.png';
+        paw.classList.add('paw');
+        paw.setAttribute('id', 'paw');
+        body.appendChild(paw);
+
+        paw.style.top = (event.clientY - body.offsetTop - 80) + 'px'
+        paw.style.left = (event.clientX - body.offsetLeft - 75) + 'px'
+
+        setTimeout(() => {
+            paw.style.opacity = 0;
+        }, 100)
+
+        setTimeout(() => { 
+          paw.remove();
+          const paws = document.querySelectorAll('#paw');
+
+          if(paws !== undefined) 
+          paws.forEach((element) => element.remove());
+
+        }, 300)
+
+      })
+    </script>
+  </body>
+</html>
